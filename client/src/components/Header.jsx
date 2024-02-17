@@ -21,7 +21,7 @@ const path=useLocation().pathname;
         <div className="flex gap-2 md:order-2">
             <Button className="w-12 h-10 hidden sm:inline" color="gray" pill><FaMoon/></Button>
             <Link to='/sign-in'>
-                <Button gradientDuoTone='purpleToBlue'>
+                <Button gradientDuoTone='purpleToBlue'outline>
                     Sign In
                 </Button>
             </Link>
