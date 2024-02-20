@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 dotenv.config();
@@ -12,7 +14,10 @@ mongoose.connect(process.env.DB_URI).then(()=>{
 
 
 const app=express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({origin:true}))
 app.listen(3000,()=>{
     console.log('Server is running at http://localhost:3000');
 })
