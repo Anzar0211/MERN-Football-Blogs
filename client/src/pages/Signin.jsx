@@ -1,11 +1,15 @@
 import { Link,useNavigate } from "react-router-dom"
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react"
 import { useState } from "react"
+import {useDispatch,useSelector} from 'react-redux';
+import {signInStart,signInSuccess,signInFailure} from '../redux/user/userSlice'
 import  axios from 'axios'
 export default function Signin(){
   const [formData,setFormData]=useState({});
-  const[errorMsg, setErrorMsg] = useState("");
-  const[loading,setLoading]=useState(null);
+  // const[errorMsg, setErrorMsg] = useState("");
+  // const[loading,setLoading]=useState(null);
+  const {loading,error:errorMsg}=useSelector(state=>state.user)
+  const dispatch=useDispatch();
   const navigate=useNavigate()
   const handleChange=(e)=>{
     console.log(e.target.value );
@@ -13,11 +17,10 @@ export default function Signin(){
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    if(!formData.email || !formData.password) return setErrorMsg("All fields are required");
+    if(!formData.email || !formData.password) return dispatch(signInFailure('Email and Password are required'));
     try{
       // const res=await axios.post('http://localhost:3000/api/auth/signin');
-      setLoading(true);
-      setErrorMsg(null);
+      dispatch(signInStart());
       const res=await fetch('http://localhost:3000/api/auth/signin',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -25,15 +28,15 @@ export default function Signin(){
       })
       const data=await res.json();
       if(data.success==false){
-        return setErrorMsg(data.message)
+        dispatch(signInFailure(data.message))
       }
-      setLoading(false);
+      // setLoading(false);
       if(res.ok){
+        dispatch(signInSuccess(data));
         navigate('/')
       }
     }catch(e){
-      setErrorMsg(e.message);
-      setLoading(false);
+      dispatch(signInFailure(e.message))
     }
   }
   return (
