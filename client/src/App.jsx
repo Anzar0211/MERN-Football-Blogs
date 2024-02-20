@@ -1,4 +1,5 @@
 import { BrowserRouter, Route,Routes } from "react-router-dom";
+import FooterComp from "./components/Footer";
 import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />}></Route>
 
       </Routes>
+      <FooterComp/>
     </BrowserRouter>
   )
 }
