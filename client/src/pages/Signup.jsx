@@ -46,7 +46,7 @@ export default function Signup(){
               Blog
           </Link>
           <p className="text-sm mt-5">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam quis culpa nemo libero recusandae alias laudantium 
+           Explore the latest football news and articles from around the world.Sign up with your email and password or Google Account. 
           </p>
         </div>
         {/* right */}
