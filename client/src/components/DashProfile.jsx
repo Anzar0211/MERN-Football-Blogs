@@ -7,6 +7,8 @@ import { useSelector } from "react-redux"
 import {app} from '../firebase.js'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { updateStart,updateSuccess,updateFailure } from "../redux/user/userSlice.js";
+import { useDispatch } from "react-redux";
 export default function DashProfile() {
     const {currentUser}=useSelector(state=>state.
     user)
@@ -14,7 +16,9 @@ export default function DashProfile() {
     const[imageFileUrl,setImageFileUrl]=useState(null);
     const[imageFileUploadingProgress,setImageFileUploadingProgress] = useState(null);
     const[imageFileUploadError,setImageFileUploadError]=useState(null);
+    const[formData,setFormData]=useState({});
     const filePickerRef=useRef()
+    const dispatch=useDispatch();
     const handleImageChange=(e)=>{
         const file=e.target.files[0]
         if(file){
@@ -22,6 +26,7 @@ export default function DashProfile() {
             setImageFileUrl(URL.createObjectURL(file))
         }
     }
+    
     useEffect(()=>{
         if(imageFile){
             uploadImage()
@@ -46,9 +51,39 @@ export default function DashProfile() {
         },
         ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                setImageFile(downloadURL)
+                setImageFile(downloadURL);
+                setFormData({...formData,profilePicture:downloadURL})
             })
         })
+    }
+    const handleChange=(e)=>{
+        setFormData({...formData,[e.target.id]:e.target.value})
+    }
+    const handleSubmit=async(e)=>{
+        e.preventDefault()
+        if(Object.keys(formData).length==0){
+            return
+        }
+        try{
+            dispatch(updateStart());
+            console.log(currentUser._id);
+            const res=await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`,{
+                method:'PUT',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(formData)
+            })
+            const data=await res.json();
+            if(!res.ok){
+                dispatch(updateFailure(data.message))
+            }else{
+                dispatch(updateSuccess(data))
+            }
+        }catch(e){
+            dispatch(updateFailure(data.message))
+        }
+
     }
     
   return (
@@ -56,7 +91,7 @@ export default function DashProfile() {
        <h1 className="my-7 text-center font-semibold text-3xl">
         Profile
        </h1>
-       <form className="flex flex-col gap-4">
+       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input type="file" accept="image/*" onChange={handleImageChange} ref={filePickerRef} hidden/>
         <div className="relative h-32 w-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full" onClick={
             ()=>filePickerRef.current.click()
@@ -78,9 +113,9 @@ export default function DashProfile() {
         <img src={imageFileUrl || currentUser.profilePicture} alt="user" className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${imageFileUploadingProgress && imageFileUploadingProgress<100 && 'opacity-60'}`}/>
         </div>
         {imageFileUploadError && <Alert color="failure">{imageFileUploadError}</Alert>}
-        <TextInput type='text' id='username' placeholder="username" defaultValue={currentUser.username}/>
-        <TextInput type='email' id='email' placeholder="email" defaultValue={currentUser.email}/>
-        <TextInput type='password' id='password' placeholder="password"/>
+        <TextInput type='text' id='username' placeholder="username" defaultValue={currentUser.username} onChange={handleChange}/>
+        <TextInput type='email' id='email' placeholder="email" defaultValue={currentUser.email} onChange={handleChange}/>
+        <TextInput type='password' id='password' placeholder="password" onChange={handleChange}/>
         <Button type="submit" gradientDuoTone='purpleToBlue' outline>Update</Button>
        </form>
        <div className="text-red-500 flex justify-between mt-4">

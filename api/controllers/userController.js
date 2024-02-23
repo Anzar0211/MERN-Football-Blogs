@@ -5,6 +5,7 @@ export const test=(req,res)=>{
     res.json({msg:"API ROUTE WORKING"});
 }
 export const updatedUser = async (req, res, next) => {
+    
   if (req.user.id !== req.params.userId) {
     return next(errorHandler(403, 'You are not allowed to update this user'));
   }
