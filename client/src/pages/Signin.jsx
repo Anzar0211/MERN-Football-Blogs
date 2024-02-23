@@ -13,7 +13,7 @@ export default function Signin(){
   const dispatch=useDispatch();
   const navigate=useNavigate()
   const handleChange=(e)=>{
-    console.log(e.target.value );
+    // console.log(e.target.value );
     setFormData({...formData, [e.target.id]: e.target.value.trim() })
   }
   const handleSubmit=async(e)=>{
@@ -24,6 +24,7 @@ export default function Signin(){
       dispatch(signInStart());
       const res=await fetch('http://localhost:3000/api/auth/signin',{
         method:'POST',
+        credentials:'include',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(formData),
       })

@@ -19,7 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:true}))
+// app.use(cors({origin:true}))
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
+
 app.listen(3000,()=>{
     console.log('Server is running at http://localhost:3000');
 })

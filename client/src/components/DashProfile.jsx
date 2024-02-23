@@ -17,6 +17,9 @@ export default function DashProfile() {
     const[imageFileUploadingProgress,setImageFileUploadingProgress] = useState(null);
     const[imageFileUploadError,setImageFileUploadError]=useState(null);
     const[formData,setFormData]=useState({});
+    const[imageFileUploading,setImageFileUploading]=useState(false);
+    const[updateUserSuccess,setUpdateUserSuccess]=useState(null);
+    const[updateUserFailure,setUpdateUserFailure]=useState(null);
     const filePickerRef=useRef()
     const dispatch=useDispatch();
     const handleImageChange=(e)=>{
@@ -33,6 +36,7 @@ export default function DashProfile() {
         }
     },[imageFile])
     const uploadImage=async()=>{
+        setImageFileUploading(true);
         setImageFileUploadError(null)
         const storage=getStorage(app);
         const fileName=new Date().getTime()+imageFile.name;
@@ -48,11 +52,13 @@ export default function DashProfile() {
             setImageFileUploadError('Could not upload image (file must be less than 2MB!)')
             setImageFileUploadingProgress(null)
             setImageFileUrl(null)
+            setImageFileUploading(false);
         },
         ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
                 setImageFile(downloadURL);
                 setFormData({...formData,profilePicture:downloadURL})
+                setImageFileUploading(false);
             })
         })
     }
@@ -61,14 +67,21 @@ export default function DashProfile() {
     }
     const handleSubmit=async(e)=>{
         e.preventDefault()
+        setUpdateUserFailure(null);
+        setUpdateUserSuccess(null);
         if(Object.keys(formData).length==0){
+            setUpdateUserFailure('No Changes Made!!')
             return
+        }
+        if(imageFileUploading){
+            setUpdateUserFailure('Please wait for the Image to Upload!!')
+            return;
         }
         try{
             dispatch(updateStart());
-            console.log(currentUser._id);
             const res=await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`,{
                 method:'PUT',
+                credentials:'include',
                 headers:{
                     'Content-Type':'application/json'
                 },
@@ -76,12 +89,15 @@ export default function DashProfile() {
             })
             const data=await res.json();
             if(!res.ok){
+                setUpdateUserFailure(data.message);
                 dispatch(updateFailure(data.message))
             }else{
                 dispatch(updateSuccess(data))
+                setUpdateUserSuccess("User's Profile Updated Successfully!!")
             }
         }catch(e){
-            dispatch(updateFailure(data.message))
+            dispatch(updateFailure(e.message))
+            setUpdateUserFailure(e.message)
         }
 
     }
@@ -122,6 +138,12 @@ export default function DashProfile() {
         <span className="cursor-pointer">Delete Account</span>
         <span className="cursor-pointer">Sign Out</span>
        </div>
+       {updateUserSuccess && (
+        <Alert color="success" className='mt-5'>{updateUserSuccess}</Alert>
+       )}
+       {updateUserFailure && (
+        <Alert  color="failure" className='mt-5'>{updateUserFailure}</Alert>
+       )}
     </div>
   )
 }

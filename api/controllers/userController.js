@@ -5,7 +5,7 @@ export const test=(req,res)=>{
     res.json({msg:"API ROUTE WORKING"});
 }
 export const updatedUser = async (req, res, next) => {
-    
+  
   if (req.user.id !== req.params.userId) {
     return next(errorHandler(403, 'You are not allowed to update this user'));
   }
@@ -32,6 +32,7 @@ export const updatedUser = async (req, res, next) => {
         errorHandler(400, 'Username can only contain letters and numbers')
       );
     }
+  }
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.userId,
@@ -50,5 +51,5 @@ export const updatedUser = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  }
+  
 };
