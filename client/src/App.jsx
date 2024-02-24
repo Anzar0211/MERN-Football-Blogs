@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import Header from "./components/Header";
 import PrivateRoutes from "./components/PrivateRoutes";
+import AdminPrivateRoute from "./components/AdminPrivateRoute";
+import CreatePost from "./pages/CreatePost";
 export default function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,9 @@ export default function App() {
         <Route path="/projects" element={<Projects />}></Route>
         <Route element={<PrivateRoutes/>}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
+        </Route>
+        <Route element={<AdminPrivateRoute/>}>
+          <Route path="/create-post" element={<CreatePost />}></Route>
         </Route>
 
       </Routes>
