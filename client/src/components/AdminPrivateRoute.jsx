@@ -6,5 +6,4 @@ export default function AdminPrivateRoute() {
         currentUser && currentUser.isAdmin ? <Outlet/> :<Navigate to="/sign-in"/>
     )
 
-  
 }
