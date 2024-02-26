@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import PrivateRoutes from "./components/PrivateRoutes";
 import AdminPrivateRoute from "./components/AdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
+import UpdatePost from "./pages/UpdatePost";
 export default function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ export default function App() {
         </Route>
         <Route element={<AdminPrivateRoute/>}>
           <Route path="/create-post" element={<CreatePost />}></Route>
+          <Route path="/update-post/:postId" element={<UpdatePost />}></Route>
         </Route>
 
       </Routes>
