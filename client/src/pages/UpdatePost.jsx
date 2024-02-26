@@ -60,7 +60,7 @@ export default function UpdatePost() {
             const data=await res.json();
             
             if(!res.ok){
-                setPublishError("Failed to publish post");
+                setPublishError("Failed to update post");
                 
             }else{
                 setPublishError(null);
