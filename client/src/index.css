@@ -9,3 +9,38 @@ body{
 .ql-editor{
     font-size: 1.05rem;
 }
+
+.post-content p{
+    margin-bottom: 0.5rem;
+}
+
+.post-content h1{
+    font-size:1.5rem;
+    font-weight: 800;
+    font-family: 'Times New Roman', Times, serif;
+    margin:1.5rem 0;
+}
+
+.post-content h2{
+    font-size: 1.4rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 1.5rem 0;
+}
+
+.post-content a{
+    color: turquoise;
+    text-decoration: none;
+}
+
+.post-content a:hover{
+    text-decoration: underline;
+}
+
+.dark .post-content a {
+    color: rgb(20,20,200);
+    text-decoration: none;
+}
+
+.dark .post-content a:hover{
+    text-decoration: underline;
+}
