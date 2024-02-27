@@ -5,7 +5,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import postRoutes from './routes/postRoutes.js'
+import postRoutes from './routes/postRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 import cookieParser from  'cookie-parser';
 dotenv.config();
 mongoose.connect(process.env.DB_URI).then(()=>{
@@ -32,6 +33,7 @@ app.listen(3000,()=>{
 app.use('/api/user',userRoutes);
 app.use('/api/auth',authRoutes);
 app.use('/api/post',postRoutes);
+app.use('/api/comment',commentRoutes);
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode;
     const message=err.message || 'Internal Server Error';
