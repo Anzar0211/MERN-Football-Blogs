@@ -1,6 +1,5 @@
 import { BrowserRouter, Route,Routes } from "react-router-dom";
 import FooterComp from "./components/Footer";
-import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
@@ -13,6 +12,8 @@ import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import ScrollToTop from "./components/ScrollToTop";
+import Search from "./pages/Search";
+import Statistics from "./pages/Statistics";
 export default function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/sign-in" element={<Signin />}></Route>
         <Route path="/sign-up" element={<Signup />}></Route>
+        <Route path="/search" element={<Search/>}></Route>
         <Route element={<PrivateRoutes/>}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
         </Route>
@@ -31,7 +33,7 @@ export default function App() {
           <Route path="/update-post/:postId" element={<UpdatePost />}></Route>
         </Route>
 
-        <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/projects" element={<Statistics />}></Route>
         <Route path="/post/:postSlug" element={<PostPage/>}></Route>
       </Routes>
       <FooterComp/>
