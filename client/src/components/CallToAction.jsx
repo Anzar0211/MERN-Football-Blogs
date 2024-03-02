@@ -10,7 +10,7 @@ export default function () {
             <p className="text-gray-500 my-2">
                 Checkout these projects
             </p>
-            <Button gradientDuoTone="purpleToPink" className="rounded-tl-xl rounded-bl-none">
+            <Button gradientDuoTone="greenToBlue" className="rounded-tl-xl rounded-bl-none">
                 <a href="#" target='_blank' rel="noopener noreferrer">
                     Github Repo
                 </a>

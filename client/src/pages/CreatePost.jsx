@@ -84,17 +84,41 @@ export default function CreatePost() {
                     <option value='uncategorized'>
                         Select a Category
                     </option>
+                    <option value='premier league news'>
+                        Premier league Football News
+                    </option>
+                    <option value='la liga news'>
+                        La liga Football News
+                    </option>
+                    <option value='serie a news'>
+                        Serie a Football News
+                    </option>
+                    <option value='bundesliga news'>
+                        Bundesliga Football News
+                    </option>
+                    <option value='ligue 1 news'>
+                        Ligue 1 Football News
+                    </option>
+                    <option value='champions league news'>
+                        Champions league Football News
+                    </option>
+                    <option value='mls news'>
+                        MlS Football News
+                    </option>
+                    <option value='saudi league news'>
+                        Saudi league Football News
+                    </option>
+                    <option value='transfer news'>
+                        Transfer Football News
+                    </option>
                     <option value='international news'>
                         International Football News
-                    </option>
-                    <option value='club news'>
-                        Club Football News
                     </option>
                 </Select>
             </div>
             <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
                 <FileInput type='file' accept='image/*' onChange={(e)=>setFile(e.target.files[0])}/>
-                <Button type="button" gradientDuoTone='purpleToBlue'
+                <Button type="button" gradientDuoTone='greenToBlue'
                 size='sm' outline onClick={handleUploadImage} disabled={imageUploadProgress}>
                     {
                         imageUploadProgress? <div className="w-16 h-16">
@@ -114,7 +138,7 @@ export default function CreatePost() {
             
             <ReactQuill theme="snow" className="h-72 mb-12" placeholder="Write Something" required onChange={(value)=>setFormData({...formData,content:value})}/>
             
-            <Button type="submit" gradientDuoTone='purpleToPink' outline>Publish</Button>
+            <Button type="submit" gradientDuoTone='greenToBlue' outline>Publish</Button>
             {publishError && <Alert color='failure' className="mt-5">{publishError}</Alert>}
         </form>
     </div>

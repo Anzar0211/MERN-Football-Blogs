@@ -172,10 +172,10 @@ export default function DashProfile() {
         <TextInput type='text' id='username' placeholder="username" defaultValue={currentUser.username} onChange={handleChange}/>
         <TextInput type='email' id='email' placeholder="email" defaultValue={currentUser.email} onChange={handleChange}/>
         <TextInput type='password' id='password' placeholder="password" onChange={handleChange}/>
-        <Button type="submit" gradientDuoTone='purpleToBlue' outline >Update</Button>
+        <Button type="submit" gradientDuoTone='tealToLime' outline >Update</Button>
         {currentUser.isAdmin && (
             <Link to={'/create-post'}>
-                <Button type="submit" gradientDuoTone='purpleToPink' className='w-full'>
+                <Button type="submit" gradientDuoTone='greenToBlue' className='w-full'>
                     Create A Post
                 </Button>
             </Link>

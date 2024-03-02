@@ -152,7 +152,7 @@ export default function DashComponent() {
                         <h1 className="text-center p-2">
                             Recent Users
                         </h1>
-                        <Button outline gradientDuoTone='purpleToPink'>
+                        <Button outline gradientDuoTone='pinkToOrange'>
                             <Link to={'/dashboard?tab=users'}>View All</Link>
                         </Button>
                     </div>
@@ -182,7 +182,7 @@ export default function DashComponent() {
                         <h1 className="text-center p-2">
                             Recent Comments
                         </h1>
-                        <Button outline gradientDuoTone='purpleToPink'>
+                        <Button outline gradientDuoTone='pinkToOrange'>
                             <Link to={'/dashboard?tab=comments'}>View All</Link>
                         </Button>
                     </div>
@@ -212,7 +212,7 @@ export default function DashComponent() {
                         <h1 className="text-center p-2">
                             Recent Posts
                         </h1>
-                        <Button outline gradientDuoTone='purpleToPink'>
+                        <Button outline gradientDuoTone='pinkToOrange'>
                             <Link to={'/dashboard?tab=posts'}>View All</Link>
                         </Button>
                     </div>

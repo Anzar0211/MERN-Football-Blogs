@@ -116,11 +116,35 @@ export default function UpdatePost() {
                     <option value='uncategorized'>
                         Select a Category
                     </option>
+                    <option value='premier league news'>
+                        Premier league Football News
+                    </option>
+                    <option value='la liga news'>
+                        La liga Football News
+                    </option>
+                    <option value='serie a news'>
+                        Serie a Football News
+                    </option>
+                    <option value='bundesliga news'>
+                        Bundesliga Football News
+                    </option>
+                    <option value='ligue 1 news'>
+                        Ligue 1 Football News
+                    </option>
+                    <option value='champions league news'>
+                        Champions league Football News
+                    </option>
+                    <option value='mls news'>
+                        MlS Football News
+                    </option>
+                    <option value='saudi league news'>
+                        Saudi league Football News
+                    </option>
+                    <option value='transfer news'>
+                        Transfer Football News
+                    </option>
                     <option value='international news'>
                         International Football News
-                    </option>
-                    <option value='club news'>
-                        Club Football News
                     </option>
                 </Select>
             </div>
@@ -146,7 +170,7 @@ export default function UpdatePost() {
             
             <ReactQuill value={formData.content} theme="snow" className="h-72 mb-12" placeholder="Write Something" required onChange={(value)=>setFormData({...formData,content:value})}/>
             
-            <Button type="submit" gradientDuoTone='purpleToPink' outline>Update Post</Button>
+            <Button type="submit" gradientDuoTone='greenToBlue' outline>Update Post</Button>
             {publishError && <Alert color='failure' className="mt-5">{publishError}</Alert>}
         </form>
     </div>

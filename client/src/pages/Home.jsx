@@ -30,7 +30,7 @@ export default function Home(){
         </p>
       <Link to='/search' className="text-xs sm:text-sm text-teal-500 font-bold hover:underline">View All Posts</Link>
       </div>
-      <div className="p-3 dark:bg-slate-700 bg-green-600">
+      <div className="p-3 bg-gradient-to-r from-gray-200 via-teal-200 to-teal-300 dark:bg-gradient-to-r from-gray-900 via-gray-700 to-slate-400">
         <CallToAction/>
       </div>
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">

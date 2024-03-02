@@ -43,8 +43,8 @@ export default function Signup(){
         {/* left */}
         <div className="flex-1">
           <Link to="/" className=" font-bold dark:text-white text-4xl">
-              <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">Football</span>
-              Blog
+              <span className="px-2 py-1 bg-gradient-to-r from-teal-500 via-green-500 to-green-900 rounded-lg text-white"><Goalpost></Goalpost></span>
+              Gazette
           </Link>
           <p className="text-sm mt-5">
            Explore the latest football news and articles from around the world.Sign up with your email and password or Google Account. 
@@ -65,7 +65,7 @@ export default function Signup(){
               <Label value="Your password"></Label>
               <TextInput type='password' placeholder="Password" id="password" onChange={handleChange}/>
             </div>
-            <Button type="submit" gradientDuoTone='purpleToPink' disabled={loading}>
+            <Button type="submit" gradientDuoTone='purpleToBlue' disabled={loading}>
               {loading ? (
                 <>  
                   <Spinner size='sm'>

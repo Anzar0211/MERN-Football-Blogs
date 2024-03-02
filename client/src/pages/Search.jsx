@@ -1,6 +1,7 @@
 import { Button, Select, TextInput } from "flowbite-react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 
@@ -95,6 +96,7 @@ export default function Search() {
             }
         }
     }
+    
   return (
     <div className="flex flex-col md:flex-row">
         <div className="p-7  border-b md:border-r md:min-h-screen border-gray-500 ">
@@ -113,15 +115,52 @@ export default function Search() {
                 <div className="flex items-center gap-2 mb-5">
                     <label className="font-semibold">Category:</label>
                     <Select onChange={handleChange} value={sidebarData.category} id='category'>
-                        <option value='uncategorized'>Uncategorized</option>
+                        {/* 
                         <option value='international news'>International News</option>
-                        <option value='club news'>Club News</option>
+                        <option value='club news'>Club News</option> */}
+                        <option value='uncategorized'>Uncategorized</option>
+                        <option value='premier league news'>
+                            Premier league Football News
+                        </option>
+                        <option value='la liga news'>
+                            La liga Football News
+                        </option>
+                        <option value='serie a news'>
+                            Serie a Football News
+                        </option>
+                        <option value='bundesliga news'>
+                            Bundesliga Football News
+                        </option>
+                        <option value='ligue 1 news'>
+                            Ligue 1 Football News
+                        </option>
+                        <option value='champions league news'>
+                            Champions league Football News
+                        </option>
+                        <option value='mls news'>
+                            MlS Football News
+                        </option>
+                        <option value='saudi league news'>
+                            Saudi league Football News
+                        </option>
+                        <option value='transfer news'>
+                            Transfer Football News
+                        </option>
+                        <option value='international news'>
+                            International Football News
+                        </option>
                     </Select>
                 </div>
-                <Button type="submit" outline gradientDuoTone='purpleToPink'>
+                <Button type="submit" outline gradientDuoTone='greenToBlue'>
                     Apply Filters
                 </Button>
             </form>
+            <Button className="mt-5" outline gradientDuoTone='greenToBlue'>
+                <Link to={`/search`}>
+                        Reset
+                </Link>
+            </Button>
+            
         </div>
         <div className="w-full">
             <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 ">Search Results:</h1>
