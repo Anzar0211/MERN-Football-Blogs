@@ -22,7 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:true}))
+app.use(cors({
+    origin:true,
+    credentials:true,
+}))
 // app.use(cors());
 
 app.listen(3000,()=>{
