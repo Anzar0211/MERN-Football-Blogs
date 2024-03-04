@@ -12,7 +12,7 @@ export default function Comment({comment,onLike,onEdit,onDelete}) {
     useEffect(()=>{
         const getUser=async() => {
             try {
-                const res=await fetch(`http://localhost:3000/api/user/${comment.userId}`,{
+                const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/user/${comment.userId}`,{
                     method:'GET',
                     credentials:'include',
                     headers:{
@@ -37,7 +37,7 @@ export default function Comment({comment,onLike,onEdit,onDelete}) {
 
     const handleSave=async()=>{
         try {
-            const res=await fetch(`http://localhost:3000/api/comment/editComment/${comment._id}`,{
+            const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/editComment/${comment._id}`,{
                 method:"PUT",
                 credentials: 'include',
                 headers:{

@@ -18,7 +18,7 @@ export default function DashComponent() {
     useEffect(()=>{
         const fetchUsers=async () => {
             try {
-                const res=await fetch(`http://localhost:3000/api/user/getusers?limit=5`,{
+                const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/user/getusers?limit=5`,{
                     method:"GET",
                     credentials:'include',
                     headers:{
@@ -37,7 +37,7 @@ export default function DashComponent() {
         }
         const fetchComments=async () => {
             try {
-                const res=await fetch(`http://localhost:3000/api/comment/getcomments?limit=5`,{
+                const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/getcomments?limit=5`,{
                     method:"GET",
                     credentials:'include',
                     headers:{
@@ -56,7 +56,7 @@ export default function DashComponent() {
         }
         const fetchPosts=async () => {
             try {
-                const res=await fetch(`http://localhost:3000/api/post/getposts?limit=5`,{
+                const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/post/getposts?limit=5`,{
                     method:"GET",
                     credentials:'include',
                     headers:{

@@ -18,7 +18,7 @@ export default function DashComments() {
         const fetchComments=async () =>{
             try{
                 
-                const res=await fetch(`http://localhost:3000/api/comment/getcomments`,{
+                const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/getcomments`,{
                     method:"GET",
                     credentials:'include',
                     headers:{
@@ -47,7 +47,7 @@ export default function DashComments() {
     const handleShowMore=async()=>{
         const startIndex=comments.length;
         try{
-            const res=await fetch(`http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`,{
+            const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/getcomments?startIndex=${startIndex}`,{
                 method:'GET',
                 credentials: "include" ,
                 headers:{
@@ -68,7 +68,7 @@ export default function DashComments() {
     const handleDeleteComment=async()=>{
         setShowModal(false);
         try{
-            const res=await fetch(`http://localhost:3000/api/comment/deleteComment/${commentIdToDelete}`,{
+            const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/deleteComment/${commentIdToDelete}`,{
                 method:'DELETE',
                 credentials:'include',
                 headers:{

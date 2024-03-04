@@ -17,7 +17,7 @@ export default function CreatePost() {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try{
-            const res=await fetch('http://localhost:3000/api/post/create',{
+            const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/post/create`,{
             method:'POST',
             credentials: 'include',
             headers:{

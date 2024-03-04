@@ -33,7 +33,7 @@ export default function Search() {
         const fetchPosts=async()=>{
             setLoading(true)
             const searchQuery=urlParams.toString();
-            const res=await fetch(`http://localhost:3000/api/post/getposts?${searchQuery}`)
+            const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/post/getposts?${searchQuery}`)
             if(!res.ok){
                 setLoading(false);
                 return;
@@ -81,7 +81,7 @@ export default function Search() {
         const urlParams= new URLSearchParams(location.search);
         urlParams.set('startIndex',startIndex);
         const searchQuery=urlParams.toString();
-        const res=await fetch(`http://localhost:3000/api/post/getposts?${searchQuery}`)
+        const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/post/getposts?${searchQuery}`)
         if(!res.ok){
             return;
         }

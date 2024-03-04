@@ -20,9 +20,9 @@ export default function Signin(){
     e.preventDefault();
     if(!formData.email || !formData.password) return dispatch(signInFailure('Email and Password are required'));
     try{
-      // const res=await axios.post('http://localhost:3000/api/auth/signin');
+      // const res=await axios.post('${import.meta.env.VITE_BASE_URL}/api/auth/signin');
       dispatch(signInStart());
-      const res=await fetch('http://localhost:3000/api/auth/signin',{
+      const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/signin`,{
         method:'POST',
         credentials:'include',
         headers:{'Content-Type':'application/json'},

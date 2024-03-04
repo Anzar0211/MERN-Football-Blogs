@@ -29,7 +29,7 @@ app.use(cors({
 // app.use(cors());
 
 app.listen(3000,()=>{
-    console.log('Server is running at http://localhost:3000');
+    console.log(`Server is running at port 3000`);
 })
 app.use('/api/user',userRoutes);
 app.use('/api/auth',authRoutes);

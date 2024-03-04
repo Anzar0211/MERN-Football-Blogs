@@ -10,13 +10,12 @@ import { useEffect } from "react";
 
 export default function Header(){
 const path=useLocation().pathname;
-const location=useLocation()
-const navigate=useNavigate()
-const dispatch=useDispatch()
-const {currentUser}=useSelector((state)=>state.user)
-const {theme}=useSelector(state=>state.theme)
-const[searchTerm,setSearchTerm]=useState('')
-console.log(searchTerm);
+const location=useLocation();
+const navigate=useNavigate();
+const dispatch=useDispatch();
+const {currentUser}=useSelector((state)=>state.user);
+const {theme}=useSelector(state=>state.theme);
+const[searchTerm,setSearchTerm]=useState('');
 useEffect(()=>{
     const urlParams=new URLSearchParams(location.search);
     const searchTermFromUrl=urlParams.get('searchTerm')
@@ -26,7 +25,7 @@ useEffect(()=>{
 },[location.search])
 const handleSignout=async(req,res,next)=>{
         try{
-            const res=await  fetch('http://localhost:3000/api/user/signout',{
+            const res=await  fetch(`${import.meta.env.VITE_BASE_URL}/api/user/signout`,{
                 method:"POST",
                 credentials:'include'
             });
@@ -50,6 +49,7 @@ const handleSignout=async(req,res,next)=>{
         const searchQuery=urlParams.toString();
         navigate(`/search?${searchQuery}`);
     }
+    
   return (
     <Navbar className="border-b-2">
         <Link to="/" className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white">
@@ -63,9 +63,14 @@ const handleSignout=async(req,res,next)=>{
             className='hidden lg:inline' value={searchTerm}
             onChange={(e)=>setSearchTerm(e.target.value)}/>
         </form>
-        <Button className='w-12 h-10 lg:hidden' color='gray' pill>
-            <AiOutlineSearch />
+        <Button className='w-12 h-10 lg:hidden' color='gray' pill> 
+            <Link to={`/search`}>
+                <AiOutlineSearch />
+            </Link>
+            
         </Button>
+        
+        
         <div className="flex gap-2 md:order-2">
             
             <Button className="w-12 h-10  sm:inline" color="gray" pill onClick={()=>dispatch(toggleTheme())}>
@@ -120,5 +125,7 @@ const handleSignout=async(req,res,next)=>{
             
         </Navbar.Collapse>
     </Navbar>
+    
+    
   )
 }

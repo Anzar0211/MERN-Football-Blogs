@@ -22,7 +22,7 @@ export default function CommentSection({postId}) {
       e.preventDefault()
     if(comment==='') return;
     if(comment.length>200) return 
-    const res=await fetch(`http://localhost:3000/api/comment/create`,{
+    const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/create`,{
       method:'POST',
       credentials:'include',
       headers:{
@@ -44,7 +44,7 @@ export default function CommentSection({postId}) {
   useEffect(()=>{
     const getComments = async () => {
       try {
-        const res=await fetch(`http://localhost:3000/api/comment/getPostComments/${postId}`,{
+        const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/getPostComments/${postId}`,{
           method:'GET',
           credentials:'include',
           headers:{
@@ -69,7 +69,7 @@ export default function CommentSection({postId}) {
           return;
         }
         else{
-          const res=await fetch(`http://localhost:3000/api/comment/likeComment/${commentId}`,{
+          const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/likeComment/${commentId}`,{
             method:"PUT",
             credentials:'include',
             headers:{
@@ -103,7 +103,7 @@ export default function CommentSection({postId}) {
         navigate('/sign-in')
         return;
       }
-      const res=await fetch(`http://localhost:3000/api/comment/deleteComment/${commentId}`,{
+      const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/comment/deleteComment/${commentId}`,{
         method:"DELETE",
         credentials: 'include',
         headers:{
