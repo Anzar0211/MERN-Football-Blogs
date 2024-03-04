@@ -21,7 +21,7 @@ export default function Signup(){
       setErrorMsg(null);
       const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`,{
         method:'POST',
-        credentials:true,
+        credentials:'include',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(formData),
       })
