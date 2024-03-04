@@ -21,6 +21,7 @@ export default function Signup(){
       setErrorMsg(null);
       const res=await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`,{
         method:'POST',
+        credentials:true,
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(formData),
       })
@@ -43,7 +44,7 @@ export default function Signup(){
         {/* left */}
         <div className="flex-1">
           <Link to="/" className=" font-bold dark:text-white text-4xl">
-              <span className="px-2 py-1 bg-gradient-to-r from-teal-500 via-green-500 to-green-900 rounded-lg text-white"><Goalpost></Goalpost></span>
+              <span className="px-2 py-1 bg-gradient-to-r from-teal-500 via-green-500 to-green-900 rounded-lg text-white">Goalpost</span>
               Gazette
           </Link>
           <p className="text-sm mt-5">
