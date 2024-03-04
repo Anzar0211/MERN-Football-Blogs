@@ -53,13 +53,14 @@ export default function DashProfile() {
         },
         (error)=>{
             setImageFileUploadError('Could not upload image (file must be less than 2MB!)')
+            setImageFile(null);
             setImageFileUploadingProgress(null)
             setImageFileUrl(null)
             setImageFileUploading(false);
         },
         ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                setImageFile(downloadURL);
+                setImageFileUrl(downloadURL);
                 setFormData({...formData,profilePicture:downloadURL})
                 setImageFileUploading(false);
             })
@@ -72,7 +73,7 @@ export default function DashProfile() {
         e.preventDefault()
         setUpdateUserFailure(null);
         setUpdateUserSuccess(null);
-        if(Object.keys(formData).length==0){
+        if(Object.keys(formData).length===0){
             setUpdateUserFailure('No Changes Made!!')
             return
         }
@@ -92,8 +93,8 @@ export default function DashProfile() {
             })
             const data=await res.json();
             if(!res.ok){
+                dispatch(updateFailure(data.message));
                 setUpdateUserFailure(data.message);
-                dispatch(updateFailure(data.message))
             }else{
                 dispatch(updateSuccess(data))
                 setUpdateUserSuccess("User's Profile Updated Successfully!!")
