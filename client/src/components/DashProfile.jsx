@@ -124,7 +124,7 @@ export default function DashProfile() {
     }
     const handleSignout=async(req,res,next)=>{
         try{
-            const res=await  fetch('${import.meta.env.VITE_BASE_URL}/api/user/signout',{
+            const res=await  fetch(`${import.meta.env.VITE_BASE_URL}/api/user/signout`,{
                 method:"POST",
                 credentials:'include'
             });
