@@ -119,8 +119,8 @@ const handleSignout=async(req,res,next)=>{
             <Navbar.Link active={path=='/about'} as={'div'}>
                 <Link to='/about'>About</Link>
             </Navbar.Link>
-            <Navbar.Link active={path=='/projects'} as={'div'}>
-                <Link to='/projects'>Projects</Link>
+            <Navbar.Link active={path=='/statistics'} as={'div'}>
+                <Link to='/statistics'>Statistics</Link>
             </Navbar.Link>
             
         </Navbar.Collapse>

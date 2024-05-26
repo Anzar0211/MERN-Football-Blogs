@@ -33,7 +33,7 @@ export default function App() {
           <Route path="/update-post/:postId" element={<UpdatePost />}></Route>
         </Route>
 
-        <Route path="/projects" element={<Statistics />}></Route>
+        <Route path="/statistics" element={<Statistics />}></Route>
         <Route path="/post/:postSlug" element={<PostPage/>}></Route>
       </Routes>
       <FooterComp/>

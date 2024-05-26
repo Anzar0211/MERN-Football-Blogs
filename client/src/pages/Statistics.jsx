@@ -1,16 +1,43 @@
-export default function Statistics() {
+import { useEffect } from "react";
+
+const Statistics = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://ls.soccersapi.com/widget/res/awo_w5201_664730f1a7fc1/widget.js';
+    script.type="module"
+    script.async = true;
+    document.body.appendChild(script);
+
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          const checkboxes = document.querySelectorAll('.add-remove-match');
+          checkboxes.forEach(checkbox => checkbox.disabled = true);
+        }
+      }
+    });
+
+    const widgetContainer = document.getElementById('ls-widget');
+    observer.observe(widgetContainer, { childList: true });
+
+    return () => {
+      observer.disconnect();
+      const scriptTag = document.querySelector('script[src="https://ls.soccersapi.com/widget/res/awo_w5201_664730f1a7fc1/widget.js"]');
+      if (scriptTag) {
+        document.body.removeChild(scriptTag);
+      }
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex justify-center items-center ">
-      <div className="max-w-2xl mx-auto p-3 text-center">
-        <div>
-          <h1 className="text-3xl font-semibold text-center my-7">Football Statistics From All around the world</h1>
-          <div className="text-md text-gray-500 flex flex-col gap-6">
-            <h2 className="text-2xl">
-              Coming Soon!!!!
-            </h2>
-          </div>
-        </div>
+    <div className="min-h-screen flex justify-center items-center">
+      <div className="w-full px-4">
+        <div id="ls-widget" data-w="awo_w5201_664730f1a7fc1" className="livescore-widget w-full"></div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Statistics;
+
+
